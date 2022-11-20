@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: addgateway
+  labels:
+    app: addgateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: addgateway
+  template:
+    metadata:
+      labels:
+        app: addgateway
+    spec:
+      containers:
+      - name: addgateway
+        image: localhost:32000/addgateway:latest
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: 2Gi

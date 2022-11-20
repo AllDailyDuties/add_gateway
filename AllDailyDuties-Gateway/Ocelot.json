@@ -1,0 +1,71 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/User",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9000
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "AddHeadersToRequest": {
+        "role":  "Claims[role] > value > |"
+      },
+      "RouteClaimsRequirement": {
+        "role": "Admin"
+      },
+      "UpstreamPathTemplate": "/identity/users",
+      "UpstreamPathMethod": [ "Get", "Post" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/User/verifyLogin",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9000
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "role": "Admin"
+      },
+      "UpstreamPathTemplate": "/identity/verify",
+      "UpstreamPathMethod": [ "Get", "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/TaskItem",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9001
+        }
+      ],
+      "UpstreamPathTemplate": "/api/tasks",
+      "UpstreamPathMethod": [ "Get", "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/GetOne/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9001
+        }
+      ],
+      "UpstreamPathTemplate": "/api/tasks/{id}",
+      "UpstreamPathMethod": [ "Get", "Post" ]
+    }
+  ],
+  "GlobalConfiguration": {}
+}

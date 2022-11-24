@@ -56,7 +56,7 @@
     },
     {
       "DownstreamPathTemplate": "/GetOne/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
